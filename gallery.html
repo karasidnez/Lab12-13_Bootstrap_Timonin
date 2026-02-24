@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Галерея портфолио с фильтрами</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Моё Портфолио</h2>
+        <div class="text-center mb-4">
+            <div class="btn-group" role="group">
+                <button class="btn btn-outline-primary" onclick="filterGallery('all', event)">Все</button>
+                <button class="btn btn-outline-primary" onclick="filterGallery('web', event)">Веб-дизайн</button>
+                <button class="btn btn-outline-primary" onclick="filterGallery('photo', event)">Фотография</button>
+                <button class="btn btn-outline-primary" onclick="filterGallery('graphic', event)">Графика</button>
+            </div>
+        </div>
+        <div class="row g-4" id="gallery">
+            <div class="col-6 col-md-4 gallery-item" data-category="web">
+                <div class="card h-100">
+                    <img src=https://marketplace.1c-bitrix.ru/upload/update/86e/mwdfgtga0kg77upnnts1mnwt84a0990z/screen1_small.jpg class="card-img-top" alt="Веб-проект">
+                    <div class="card-body">
+                        <h6 class="card-title">Корпоративный сайт</h6>
+                        <small class="text-muted">Веб-дизайн</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 gallery-item" data-category="web">
+                <div class="card h-100">
+                    <img src=https://static.republika.co.id/uploads/member/images/news/230331035920-577.jpg class="card-img-top" alt="Интернет-магазин">
+                    <div class="card-body">
+                        <h6 class="card-title">Интернет-магазин</h6>
+                        <small class="text-muted">Веб-дизайн</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 gallery-item" data-category="photo">
+                <div class="card h-100">
+                    <img src="https://img.freepik.com/premium-photo/scenic-view-lake-by-trees-forest-against-sky_1048944-10810760.jpg?semt=ais_hybrid" class="card-img-top" alt="Фото леса">
+                    <div class="card-body">
+                        <h6 class="card-title">Фото леса</h6>
+                        <small class="text-muted">Фотография</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 gallery-item" data-category="photo">
+                <div class="card h-100">
+                    <img src="https://img.freepik.com/premium-photo/desert-with-sand-dunes-mountains-background_1230717-233923.jpg?semt=ais_hybrid&w=740" class="card-img-top" alt="Фото пустыни">
+                    <div class="card-body">
+                        <h6 class="card-title">Песчаные дюны</h6>
+                        <small class="text-muted">Фотография</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 gallery-item" data-category="graphic">
+                <div class="card h-100">
+                    <img src="https://i.ytimg.com/vi/kqKvJqvMnFs/maxresdefault.jpg" class="card-img-top" alt="Рисунок утки">
+                    <div class="card-body">
+                        <h6 class="card-title">Рисунок утки</h6>
+                        <small class="text-muted">Графика</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 gallery-item" data-category="graphic">
+                <div class="card h-100">
+                    <img src="https://i.pinimg.com/736x/31/87/78/318778234bb475658aa66358a43f950f.jpg" class="card-img-top" alt="Рисунок кота">
+                    <div class="card-body">
+                        <h6 class="card-title">Рисунок кота</h6>
+                        <small class="text-muted">Графика</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function filterGallery(category, event) {
+            const items = document.querySelectorAll(".gallery-item");
+            const buttons = document.querySelectorAll(".btn-group .btn");
+            items.forEach((item) => {
+                const itemCategory = item.dataset.category;
+                if (category === "all" || category === itemCategory) {
+                    item.style.display = "block";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+            buttons.forEach((btn) => {
+                btn.classList.remove("active");
+            });
+            if (event && event.target) {
+                event.target.classList.add("active");
+            }
+        }
+        window.onload = function() {
+            const allButton = document.querySelector(".btn-group .btn");
+            if (allButton) {
+                allButton.classList.add("active");
+            }
+            filterGallery('all', {target: allButton});
+        };
+    </script>
+</body>
+</html>
